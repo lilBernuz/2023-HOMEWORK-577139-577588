@@ -18,18 +18,26 @@ public class StanzaBloccata extends Stanza {
 	@Override
 	public Stanza getStanzaAdiacente(String direzione) {
 		if(this.isBloccato() && direzione.equals(direzioneBloccata)) {
-			return this;		}
+			return this;		
+			}
 		else 
 			return super.getStanzaAdiacente(direzione);
 	}
 	
 	@Override
 	public String getDescrizione() {
-		String bloccata = "Stanza bloccata nella direzione: " + this.direzioneBloccata;
-		if(this.isBloccato())
-			return super.getDescrizione();
+		if(!this.isBloccato())
+			return super.toString();
 		else
-			return bloccata;
+			return this.toString();
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder risultato = new StringBuilder();
+		risultato.append(super.toString());
+		risultato.append("\nStanza bloccata nella direzione: " + this.direzioneBloccata);
+		return risultato.toString();
 	}
 }
 

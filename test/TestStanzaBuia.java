@@ -17,13 +17,12 @@ public class TestStanzaBuia {
 	}
 	
 	@Test
-	public void test_StanzaBuia() {
-		assertEquals("qui c'è un buio pesto", buia.getDescrizione());
+	public void test_StanzaBuiaVero() {
+		assertTrue(buia.getDescrizione().equals("Qui c'è un buio pesto!"));
 	}
 	
 	@Test
-	public void test_StanzaBuia2() {
-		assertFalse(illuminata.getDescrizione().equals("qui c'è un buio pesto"));
+	public void test_StanzaBuiaFalso() {
+		assertFalse(illuminata.getDescrizione().equals("Qui c'è un buio pesto!"));
 	}
-
 }

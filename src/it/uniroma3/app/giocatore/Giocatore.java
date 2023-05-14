@@ -1,6 +1,5 @@
 package it.uniroma3.app.giocatore;
 import it.uniroma3.app.attrezzi.Attrezzo;
-import it.uniroma3.diadia.giocatore.Borsa;
 
 public class Giocatore {
 	

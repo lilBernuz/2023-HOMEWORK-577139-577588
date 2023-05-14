@@ -6,17 +6,21 @@ import org.junit.Before;
 import org.junit.Test;
 
 import it.uniroma3.app.ambienti.Labirinto;
+import it.uniroma3.app.ambienti.LabirintoBuilder;
 import it.uniroma3.app.ambienti.Stanza;
 
 public class TestLabirinto {
 	
-	Labirinto labirinto = new Labirinto();
-	Stanza stanzaIniziale = new Stanza("atrio");
-	Stanza stanzaFinale = new Stanza("Biblioteca");
+	Labirinto labirinto;
 	
 	@Before
 	public void setUp() {
-		this.labirinto.creaStanze();	
+		labirinto = new LabirintoBuilder()
+				.addStanzaIniziale("Atrio")
+				.addAttrezzo("martello", 3)
+				.addStanzaVincente("Biblioteca")
+				.addAdiacenza("Atrio", "Biblioteca", "nord")
+				.getLabirinto();
 	}
 	
 

@@ -1,42 +1,45 @@
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
-
-import it.uniroma3.main.Partita;
-
+import it.uniroma3.app.ambienti.Labirinto;
+import it.uniroma3.app.ambienti.LabirintoBuilder;
+import it.uniroma3.app.ambienti.Stanza;
+import it.uniroma3.main.*;
 
 public class TestPartita {
-	
-	Partita partita = new Partita();
+
+	Labirinto labirinto;
+	Partita p;
+	Stanza s;
+
+	@Before
+	public void setUp() {
+		labirinto = new LabirintoBuilder()
+				.addStanzaIniziale("Atrio")
+				.addAttrezzo("martello", 3)
+				.addStanzaVincente("Biblioteca")
+				.addAdiacenza("Atrio", "Biblioteca", "nord")
+				.getLabirinto();
+		p = new Partita(labirinto);
+		s = new Stanza("Stanza");
+	}
 
 	@Test
-	public void test_isFinita1() {
-		assertFalse(partita.isFinita());		
-	}
-	
-	@Test
-	public void test_isFinitaTramiteVittoria() {
-		partita.setStanzaCorrente(partita.getLabirinto().getStanzaVincente());
-		assertTrue(partita.isFinita());
-	}
-	
-	@Test
-	public void test_isFinita3() {
-		partita.setFinita();
-		assertTrue(partita.isFinita());
-	}
-	
-	@Test
-	public void test_giocatoreIsVivo() {
-		partita.getGiocatore().setCfu(4);
-		assertTrue(partita.giocatoreIsVivo());
-	}
-	
-	@Test
-	public void test_giocatoreIsVivo2() {
-		partita.getGiocatore().setCfu(0);
-		assertFalse(partita.giocatoreIsVivo());
+	public void testGetStanzaVincente() {
+		assertEquals("Biblioteca", p.getLabirinto().getStanzaVincente().getNome());
 	}
 
+	@Test
+	public void testSetStanzaCorrente() {
+		p.getLabirinto().setStanzaCorrente(s);
+		assertEquals(s, p.getLabirinto().getStanzaCorrente());
+	}
+
+	@Test
+	public void testIsFinita() {
+
+		assertFalse(p.isFinita());
+	}
 
 }

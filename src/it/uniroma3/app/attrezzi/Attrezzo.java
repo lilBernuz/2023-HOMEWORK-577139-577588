@@ -9,7 +9,7 @@ package it.uniroma3.app.attrezzi;
  * @see Stanza
  * @version base
  */
-public class Attrezzo {
+public class Attrezzo implements Comparable<Object>{
 
 	private String nome;
 	private int peso;
@@ -46,6 +46,23 @@ public class Attrezzo {
 	 */
 	public String toString() {
 		return this.getNome()+" ("+this.getPeso()+"kg)";
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		Attrezzo that = (Attrezzo)o;
+		return this.getNome().equals(that.getNome());
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.getNome().hashCode() + this.getPeso();
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		Attrezzo that = (Attrezzo)o;
+		return this.getNome().compareTo(that.getNome());
 	}
 
 }

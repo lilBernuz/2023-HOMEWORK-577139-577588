@@ -9,7 +9,7 @@ public class ComandoVai implements Comando {
 	@Override
 	public void esegui(Partita partita) {
 		
-		Stanza stanzaCorrente = partita.getStanzaCorrente();
+		Stanza stanzaCorrente = partita.getLabirinto().getStanzaCorrente();
 		Stanza prossimaStanza = null;
 		if(this.direzione==null) {
 			System.out.println("Dove vuoi andare ?");
@@ -23,9 +23,9 @@ public class ComandoVai implements Comando {
 			return;
 		}
 
-		partita.setStanzaCorrente(prossimaStanza);
+		partita.getLabirinto().setStanzaCorrente(prossimaStanza);
 		int cfu = partita.getGiocatore().getCfu();
-		System.out.println(partita.getStanzaCorrente().getDescrizione());
+		System.out.println(partita.getLabirinto().getStanzaCorrente().getDescrizione());
 		System.out.println(partita.getGiocatore().getCfu() -1);
 		partita.getGiocatore().setCfu(cfu-1);
 	}

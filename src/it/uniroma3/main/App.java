@@ -1,6 +1,8 @@
 package it.uniroma3.main;
 import it.uniroma3.app.IOConsole.IO;
 import it.uniroma3.app.IOConsole.IOConsole;
+import it.uniroma3.app.ambienti.Labirinto;
+import it.uniroma3.app.ambienti.LabirintoBuilder;
 import it.uniroma3.app.comandi.Comando;
 import it.uniroma3.app.comandi.FabbricaDiComandi;
 import it.uniroma3.app.comandi.FabbricaDiComandiFisarmonica;
@@ -26,13 +28,10 @@ public class App {
 	private IO console;
 
 
-	public App(IO io) {
+	public App(IO io, Labirinto labirinto) {
 		this.console = io; 
-		this.partita = new Partita();
+		this.partita = new Partita(labirinto);
 
-	}
-	public App() {
-		this(new IOConsole());
 	}
 
 	public void gioca() {
@@ -63,7 +62,13 @@ public class App {
 
 	public static void main(String[] argc) {
 		IO io = new IOConsole();
-		App gioco = new App(io);
+		Labirinto labirinto = new LabirintoBuilder()
+				.addStanzaIniziale("Atrio")
+				.addAttrezzo("martello", 3)
+				.addStanzaVincente("Biblioteca")
+				.addAdiacenza("Atrio", "Biblioteca", "nord")
+				.getLabirinto();
+		App gioco = new App(io, labirinto);
 		gioco.gioca();
 	}
 }

@@ -11,7 +11,7 @@ public class ComandoPosa implements Comando {
 		
 		Attrezzo attrezzo = partita.getGiocatore().getBorsa().getAttrezzo(nomeAttrezzo);
 		partita.getGiocatore().posaAttrezzo(nomeAttrezzo);
-		partita.getStanzaCorrente().addAttrezzo(attrezzo);
+		partita.getLabirinto().getStanzaCorrente().addAttrezzo(attrezzo);
 	}
 	
 	@Override 
